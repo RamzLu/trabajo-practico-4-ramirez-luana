@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../config/database.js";
 
-const User = sequelize.define("personaje", {
+export const Character = sequelize.define("personaje", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -13,7 +13,7 @@ const User = sequelize.define("personaje", {
     allowNull: false,
   },
   ki: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.FLOAT,
     allowNull: false,
   },
   race: {
