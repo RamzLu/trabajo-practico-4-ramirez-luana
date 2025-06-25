@@ -1,16 +1,28 @@
-import e from "express";
+import { Character } from "../models/character.model.js";
 
-export const getAll = (req, res) => {
-  res.send("All characters");
-};
-
-export const getById = (req, res) => {
-  res.send("Getting by id");
+export const getAll = async (req, res) => {
+  try {
+    const character = await Character.findAll(req.body);
+    res.status(201).json(character);
+  } catch (error) {
+    res.status(500).json({
+      error: error.mesagge,
+    });
+  }
 };
 
 export const createCharacter = (req, res) => {
-  res.send("Creating character");
+  try {
+    const character = Character.create(req.body);
+    res.status(201).json(character);
+  } catch (error) {
+    res.status(501).json({
+      error: error.mesagge,
+    });
+  }
 };
+
+export const getById = (req, res) => {};
 
 export const upDateCharacter = (req, res) => {
   res.send("Updating character");
