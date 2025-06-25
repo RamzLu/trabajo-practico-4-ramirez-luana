@@ -1,6 +1,20 @@
 import { Router } from "express";
-import { getAll } from "../controllers/character.controllers.js";
+import {
+  getAll,
+  getById,
+  createCharacter,
+  upDateCharacter,
+  deleteCharacter,
+} from "../controllers/character.controllers.js";
 
 export const routerCharacter = Router();
 
-routerCharacter.get("/character", getAll);
+routerCharacter.get("/characters", getAll);
+
+routerCharacter.get("/characters/:id", getById);
+
+routerCharacter.post("/characters", createCharacter);
+
+routerCharacter.put("/characters/:id", upDateCharacter);
+
+routerCharacter.delete("/characters/:id", deleteCharacter);
