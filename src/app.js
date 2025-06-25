@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { routerCharacter } from "./routers/character.routes.js";
-import { startDB } from "./database/database.js";
+import { startDB } from "./config/database.js";
 
 dotenv.config();
 
