@@ -13,13 +13,12 @@ Content-Type: application/json
     "name": "Piccolo",
     "ki": 200000,
     "race": "namekiano",
-    "gender": "male",
-    "description": "es un namekiano que se vuelve bueno"
+    "gender": "male"
 }
 
 
 ###Actualizar
-put http://localhost:4000/api/characters/2
+put http://localhost:4000/api/characters/3
 Content-Type: application/json
 
 {
@@ -31,5 +30,5 @@ Content-Type: application/json
 }
 
 ###elimiar
-DELETE http://localhost:4000/api/characters/2
+DELETE http://localhost:4000/api/characters/3
 

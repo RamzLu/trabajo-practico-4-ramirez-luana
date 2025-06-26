@@ -59,16 +59,6 @@ export const createCharacter = async (req, res) => {
 
 export const getById = async (req, res) => {
   try {
-    if (
-      req.body.description !== undefined &&
-      req.body.description !== "" &&
-      req.body.description.trim().length < 5
-    ) {
-      console.log("Descripción inválida:", req.body.description);
-      return res.status(400).json({
-        msg: "La descripcion debe ser cadena de texto mayor a 5 caracteres",
-      });
-    }
     const character = await Character.findByPk(req.params.id);
     if (character) {
       res.json(character);
@@ -86,6 +76,16 @@ export const getById = async (req, res) => {
 
 export const upDateCharacter = async (req, res) => {
   try {
+    if (
+      req.body.description !== undefined &&
+      req.body.description !== "" &&
+      req.body.description.trim().length < 5
+    ) {
+      console.log("Descripción inválida:", req.body.description);
+      return res.status(400).json({
+        msg: "La descripcion debe ser cadena de texto mayor a 5 caracteres",
+      });
+    }
     const { id, name, ki, race, gender } = req.body;
 
     if (id == "" || name == "" || ki == "" || race == "" || gender == "") {
