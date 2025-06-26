@@ -13,6 +13,40 @@ export const getAll = async (req, res) => {
 
 export const createCharacter = async (req, res) => {
   try {
+    const { id, name, ki, race, gender, description } = req.body;
+
+    if (id == "" || name == "" || ki == "" || race == "" || gender == "") {
+      res.json({
+        msg: "El id, name, ki, race, gender no pueden ser nulos",
+      });
+    }
+
+    if (typeof ki != "number" || !Number.isInteger(ki)) {
+      res.status(404).json({
+        msg: "El ki debe ser un número entero",
+      });
+    }
+
+    if (
+      (gender !== "male") &
+      (gender !== "Male") &
+      (gender !== "female") &
+      (gender !== "Female")
+    ) {
+      res.status(400).json({
+        msg: "El genero solo puede ser female o male",
+      });
+    }
+
+    if (
+      (description !== undefined && typeof description !== "string") ||
+      description.trim().length < 3
+    ) {
+      res.status(400).json({
+        msg: "La descripcion debe ser cadena de texto mayor a 3 caracteres",
+      });
+    }
+
     const character = await Character.create(req.body);
     res.status(201).json(character);
   } catch (error) {
@@ -41,6 +75,30 @@ export const getById = async (req, res) => {
 
 export const upDateCharacter = async (req, res) => {
   try {
+    const { id, name, ki, race, gender } = req.body;
+
+    if (id == "" || name == "" || ki == "" || race == "" || gender == "") {
+      res.json({
+        msg: "El id, name, ki, race, gender no pueden ser nulos",
+      });
+    }
+    if (typeof ki != "number" || !Number.isInteger(ki)) {
+      res.status(401).json({
+        msg: "El ki debe ser un número entero",
+      });
+    }
+
+    if (
+      (gender !== "male") &
+      (gender !== "Male") &
+      (gender !== "female") &
+      (gender !== "Female")
+    ) {
+      res.status(401).json({
+        msg: "El genero solo puede ser female o male",
+      });
+    }
+
     const [update] = await Character.update(req.body, {
       where: { id: req.params.id },
     });
