@@ -10,12 +10,11 @@ POST  http://localhost:4000/api/characters
 Content-Type: application/json
 
 {
-    "name": "lola",
-    "ki": 42432545,
-    "race": "slkaddsa",
-    "gender": "female",
-    "description": "LOLOLO"
-
+    "name": "Piccolo",
+    "ki": 200000,
+    "race": "namekiano",
+    "gender": "male",
+    "description": "es un namekiano que se vuelve bueno"
 }
 
 
@@ -24,14 +23,13 @@ put http://localhost:4000/api/characters/2
 Content-Type: application/json
 
 {
-    "name": "Luanaaaaaa",
+    "name": "xxxx",
     "ki": 205670000,
     "race": "sayayin",
-    "gender": "female",
-    "description": "ni idea"
+    "gender": "female"
 
 }
 
 ###elimiar
-DELETE http://localhost:4000/api/characters/3
+DELETE http://localhost:4000/api/characters/2
 
