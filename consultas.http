@@ -11,7 +11,7 @@ Content-Type: application/json
 
 {
     "name": "Piccolo",
-    "ki": 200000,
+    "ki": "",
     "race": "namekiano",
     "gender": "male"
 }

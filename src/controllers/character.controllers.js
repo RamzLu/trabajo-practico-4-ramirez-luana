@@ -25,7 +25,7 @@ export const createCharacter = async (req, res) => {
     }
     const { id, name, ki, race, gender } = req.body;
 
-    if (id == "" || name == "" || ki == "" || race == "" || gender == "") {
+    if (id == "" || name == "" || race == "" || gender == "") {
       return res.json({
         msg: "El id, name, ki, race, gender no pueden ser nulos",
       });
@@ -33,7 +33,7 @@ export const createCharacter = async (req, res) => {
 
     if (typeof ki != "number" || !Number.isInteger(ki)) {
       return res.status(400).json({
-        msg: "El ki debe ser un número entero",
+        msg: "El ki no debe ser vacio y debe contener un número entero ",
       });
     }
 
