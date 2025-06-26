@@ -13,44 +13,45 @@ export const getAll = async (req, res) => {
 
 export const createCharacter = async (req, res) => {
   try {
-    const { id, name, ki, race, gender, description } = req.body;
+    if (
+      req.body.description !== undefined &&
+      req.body.description !== "" &&
+      req.body.description.trim().length < 5
+    ) {
+      console.log("Descripción inválida:", req.body.description);
+      return res.status(400).json({
+        msg: "La descripcion debe ser cadena de texto mayor a 5 caracteres",
+      });
+    }
+    const { id, name, ki, race, gender } = req.body;
 
     if (id == "" || name == "" || ki == "" || race == "" || gender == "") {
-      res.json({
+      return res.json({
         msg: "El id, name, ki, race, gender no pueden ser nulos",
       });
     }
 
     if (typeof ki != "number" || !Number.isInteger(ki)) {
-      res.status(404).json({
+      return res.status(400).json({
         msg: "El ki debe ser un número entero",
       });
     }
 
     if (
-      (gender !== "male") &
-      (gender !== "Male") &
-      (gender !== "female") &
-      (gender !== "Female")
+      gender !== "male" &&
+      gender !== "Male" &&
+      gender !== "female" &&
+      gender !== "Female"
     ) {
-      res.status(400).json({
+      return res.status(400).json({
         msg: "El genero solo puede ser female o male",
       });
     }
 
-    if (
-      (description !== undefined && typeof description !== "string") ||
-      description.trim().length < 3
-    ) {
-      res.status(400).json({
-        msg: "La descripcion debe ser cadena de texto mayor a 3 caracteres",
-      });
-    }
-
     const character = await Character.create(req.body);
-    res.status(201).json(character);
+    return res.status(201).json(character);
   } catch (error) {
-    res.status(501).json({
+    return res.status(501).json({
       error: error.mesagge,
     });
   }
@@ -58,6 +59,16 @@ export const createCharacter = async (req, res) => {
 
 export const getById = async (req, res) => {
   try {
+    if (
+      req.body.description !== undefined &&
+      req.body.description !== "" &&
+      req.body.description.trim().length < 5
+    ) {
+      console.log("Descripción inválida:", req.body.description);
+      return res.status(400).json({
+        msg: "La descripcion debe ser cadena de texto mayor a 5 caracteres",
+      });
+    }
     const character = await Character.findByPk(req.params.id);
     if (character) {
       res.json(character);
@@ -83,7 +94,7 @@ export const upDateCharacter = async (req, res) => {
       });
     }
     if (typeof ki != "number" || !Number.isInteger(ki)) {
-      res.status(401).json({
+      res.status(400).json({
         msg: "El ki debe ser un número entero",
       });
     }
@@ -94,7 +105,7 @@ export const upDateCharacter = async (req, res) => {
       (gender !== "female") &
       (gender !== "Female")
     ) {
-      res.status(401).json({
+      res.status(400).json({
         msg: "El genero solo puede ser female o male",
       });
     }
