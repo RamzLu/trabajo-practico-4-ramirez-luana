@@ -26,6 +26,6 @@ export const Character = sequelize.define("personaje", {
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 });
