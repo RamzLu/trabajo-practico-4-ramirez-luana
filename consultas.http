@@ -2,16 +2,36 @@
 get http://localhost:4000/api/characters
 
 ### Ver por id 
-get http://localhost:4000/api/characters/1
+get http://localhost:4000/api/characters/3
 
 
 ### Crear personaje
-
 POST  http://localhost:4000/api/characters
+Content-Type: application/json
+
+{
+    "name": "lola",
+    "ki": 42432545,
+    "race": "slkaddsa",
+    "gender": "female",
+    "description": "LOLOLO"
+
+}
+
 
 ###Actualizar
-put http://localhost:4000/api/characters/1
+put http://localhost:4000/api/characters/2
+Content-Type: application/json
+
+{
+    "name": "Luanaaaaaa",
+    "ki": 205670000,
+    "race": "sayayin",
+    "gender": "female",
+    "description": "ni idea"
+
+}
 
 ###elimiar
-DELETE http://localhost:4000/api/characters/1
+DELETE http://localhost:4000/api/characters/3
 
